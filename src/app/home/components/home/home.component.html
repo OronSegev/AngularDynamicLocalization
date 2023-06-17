@@ -1,0 +1,16 @@
+<div class="home-container">
+  <div class="locales-buttons-container">
+    <button (click)="onLanguageClicked('en')"> Language: English</button>
+    <button (click)="onLanguageClicked('he')">Language: Hebrew</button>
+    <button (click)="onLocaleClicked('en')">English Locale</button>
+    <button (click)="onLocaleClicked('he')">Hebrew Locale</button>
+    <button (click)="onCurrencyClicked('USD')">USD</button>
+    <button (click)="onCurrencyClicked('ILS')">ILS</button>
+  </div>
+  <div class="locale-examples">
+    <h1> {{'HELLO' | translate}} </h1>
+    <div> Date: {{ now | date: 'shortDate' }} </div>
+    <div> Numbers: {{ 8950467453809 | number }} </div>
+    <div> Currency: {{ 456 | currency }} </div>
+  </div>
+</div>
