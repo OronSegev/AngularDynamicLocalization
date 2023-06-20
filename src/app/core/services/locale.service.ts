@@ -92,9 +92,13 @@ export class LocaleService {
   }
 
   private subscribeToLocaleChange() {
-    combineLatest([this.locale, this.translate.onLangChange]).subscribe(([locale, LangChangeEvent])=> {
+    this.locale.subscribe(next => {
       this.refreshApp();
     });
+    this.translate.onLangChange.subscribe(next => {
+      this.refreshApp();
+    });
+
   }
 
   private setDefaultLocale(defaultLocale: Locale = DEFAULT_LOCALE) {
@@ -112,6 +116,7 @@ export class LocaleService {
   */
   private async refreshApp() {
     this.router.navigated = false;
-    await this.router.navigate([], {queryParams: {changeStrategy: 'reuse'}, queryParamsHandling: ''}).catch(noop);
+    await this.router.navigate([], {queryParams: {changeStrategy: 'reuse'}}).catch(noop);
+    await this.router.navigate([]).catch(noop);
   }
 }
